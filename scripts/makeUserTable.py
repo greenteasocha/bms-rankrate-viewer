@@ -5,7 +5,7 @@ import sys
 from bs4 import BeautifulSoup
 
 def getPlayerPercentage(table, LR2ID):
-    with open("./URLLinks.json", "r", encoding='utf-8') as fr:
+    with open("./data/URLLinks.json", "r", encoding='utf-8') as fr:
         musicdata = json.load(fr)
 
     rows = table.findAll('tr')
@@ -43,7 +43,7 @@ def getPlayerPercentage(table, LR2ID):
 
     contents_out.sort(key=lambda x: x["ランキング位置(%)"])
     
-    with open("userData_{}.json".format(LR2ID), "w", encoding='utf-8') as fw:
+    with open("./data/users/userData_{}.json".format(LR2ID), "w", encoding='utf-8') as fw:
         json.dump({LR2ID: contents_out}, fw, ensure_ascii=False, indent=4, sort_keys=True, separators=(',', ': '))
 
 def main():

@@ -6,14 +6,15 @@ html = '''
 <!DOCTYPE html> 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>BMS</title>
 </head>
 <body>
     <header>
         <div class=title/logo> BMS Rank Ratio(Beta)</div>
     </header>
-    <div class="contents">
+    <div class="playerInfo">
+        LR2ID: {{ LR2ID }}
     </div>
     <table class="playerlist" id="sorter" width="100%">
     <tr class="playerheader">
@@ -76,9 +77,9 @@ def generator(data, LR2ID):
             "rank_rate": content["ランキング位置(%)"] }
         )
 
-
-
-    html_data = {"tableContents": tableContents}
+    html_data = {
+        "LR2ID": LR2ID, 
+        "tableContents": tableContents}
     return template.render(html_data)
         
     

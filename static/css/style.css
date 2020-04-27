@@ -11,6 +11,12 @@ header{
     color: #FFFFFF;
 }
 
+.playerInfo{
+    text-align: center; 
+    font-family: 'Century Gothic';
+    font-size: 30px;
+    margin: 15px
+}
 table{
     border-collapse: collapse;
 }
