@@ -22,7 +22,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return "つかい方... https://bms-rankrate-viewer.herokuapp.com/user/<自分のLR2ID>  にアクセス。 ほんまに適当でごめん"
+    return render_template('home.html')
+    # return "つかい方... https://bms-rankrate-viewer.herokuapp.com/user/<自分のLR2ID>  にアクセス。 ほんまに適当でごめん"
     # LR2ID = 41955
     # with open("./data/users/userData_41955.json", "r", encoding="utf-8") as fr:
     #     data = json.load(fr)
