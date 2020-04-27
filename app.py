@@ -22,11 +22,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    LR2ID = 41955
-    with open("./data/users/userData_41955.json", "r", encoding="utf-8") as fr:
-        data = json.load(fr)
+    return "hello."
+    # LR2ID = 41955
+    # with open("./data/users/userData_41955.json", "r", encoding="utf-8") as fr:
+    #     data = json.load(fr)
 
-    return generator(data, LR2ID) 
+    # return generator(data, LR2ID) 
     
 @app.route('/user/<int:LR2ID>')
 def show_table(LR2ID):
