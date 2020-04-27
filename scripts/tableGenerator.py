@@ -13,53 +13,57 @@ html = '''
     <header>
         <div class=title/logo> BMS Rank Ratio(Beta)</div>
     </header>
-    <div class="playerInfo">
-        LR2ID: {{ LR2ID }}
+    <div class="middle">
+        <div class="playerInfo">
+        <p class="LR2ID">
+            LR2ID: {{ LR2ID }}
+        </p>
+        </div>
+        <table class="scoretable" id="sorter" width="80%" align="center">
+        <tr class="playerheader">
+            <td>
+            ID
+            </td>
+            <td class="nosort">
+            Lv
+            </td>
+            <td class="nosort">
+            Music
+            </td>
+            <td>
+            順位
+            </td>
+            <td>
+            総人数·
+            </td>
+            <td>
+            ランク位置(%)
+            </td>
+        </tr>
+        {% for item in tableContents %}
+        <tr class="content_each">
+            <td>
+            {{ item.ID }}
+            </td>
+            <td class="nosort">
+            {{ item.Lv }}
+            </td>
+            <td class="nosort">
+            {{ item.title }}
+            </td>
+            <td>
+            {{ item.rank }}
+            </td>
+            <td>
+            {{ item.num_players }}
+            </td>
+            <td>
+            {{ item.rank_rate }}
+            </td>
+        </tr>
+        {% endfor %}
+        </table>
     </div>
-    <table class="playerlist" id="sorter" width="100%">
-    <tr class="playerheader">
-         <td>
-          ID
-         </td>
-         <td class="nosort">
-          Lv
-         </td>
-         <td class="nosort">
-          Music
-         </td>
-         <td>
-          順位
-         </td>
-         <td>
-          総人数·
-         </td>
-         <td>
-          ランク位置(%)
-         </td>
-    </tr>
-    {% for item in tableContents %}
-    <tr class="content_each">
-        <td>
-        {{ item.ID }}
-        </td>
-        <td class="nosort">
-        {{ item.Lv }}
-        </td>
-        <td class="nosort">
-        {{ item.title }}
-        </td>
-        <td>
-        {{ item.rank }}
-        </td>
-        <td>
-        {{ item.num_players }}
-        </td>
-        <td>
-        {{ item.rank_rate }}
-        </td>
-    </tr>
-    {% endfor %}
-    </table>
 </body>
 '''
 

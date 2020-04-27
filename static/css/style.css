@@ -11,16 +11,44 @@ header{
     color: #FFFFFF;
 }
 
+.LR2ID{
+    background-color: #FFFFFF;
+}
+
 .playerInfo{
+    background-image: linear-gradient(-45deg,
+        #222 25%, #444 25%, #222 50%, #444 50%, #222 75%,#444 75%, #222
+    );
+    /* background-size: 4px 4px;
+    background-color: #FFFFFF; */
     text-align: center; 
     font-family: 'Century Gothic';
     font-size: 30px;
-    margin: 15px
+    padding: 15px 
 }
+.scoretable{
+    background-color: #FFFFFF;
+}
+
+.middle{
+    background-image: linear-gradient(-45deg,
+        #222 25%, #444 25%, #222 50%, #444 50%, #222 75%,#444 75%, #222
+    );
+    background-size: 4px 4px;
+}
+
 table{
     border-collapse: collapse;
+    font-family: verdana, arial, sans-serif;
+    
 }
 
 tr{
     border-bottom: 2px #222222 solid;
+    
+}
+
+td {
+    padding: 5px;
+    background-color: #DDD;
 }
