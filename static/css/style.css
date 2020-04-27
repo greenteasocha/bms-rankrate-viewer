@@ -1,0 +1,20 @@
+header{
+    background-color: #222222;
+    font-family: 'Century Gothic';
+    font-size: 40px;
+    color: #FFFFFF;
+    border-bottom: cornsilk;
+}
+
+.contents {
+    background-color: #222222;
+    color: #FFFFFF;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+tr{
+    border-bottom: 2px #222222 solid;
+}

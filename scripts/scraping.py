@@ -3,6 +3,10 @@ import json
 import csv
 from bs4 import BeautifulSoup
 
+"""
+1000曲で5~10分程度かかります
+"""
+
 def getNumOfPlayersFromURL(url):
     # 曲プレイ人数を取得
     get_url_info = requests.get(url)
