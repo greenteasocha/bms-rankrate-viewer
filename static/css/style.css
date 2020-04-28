@@ -1,3 +1,14 @@
+html,
+body{
+    height: 95%;
+}
+a:link{
+    color: paleturquoise;
+}
+a:visited{
+    color: orchid;
+}
+
 header{
     background-color: #222222;
     font-family: 'Century Gothic';
@@ -6,6 +17,13 @@ header{
     border-bottom: cornsilk;
 }
 
+footer{
+    background-color: #222222;
+    font-family: 'Century Gothic';
+    font-size: 40px;
+    color: #FFFFFF;
+    border-bottom: cornsilk;
+}
 .contents {
     background-color: #222222;
     color: #FFFFFF;
@@ -31,16 +49,43 @@ header{
 }
 
 .middle{
+    min-height: 95%;
     background-image: linear-gradient(-45deg,
         #222 25%, #444 25%, #222 50%, #444 50%, #222 75%,#444 75%, #222
     );
     background-size: 4px 4px;
+    padding: 1px;
+}
+
+
+.pageJump{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.ID_form{
+    height: 25px;
+    font-size: 20px;
+}
+
+.infoText{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #444444;
+    border:solid 5px #000000;
+    border-radius: 1em;
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 table{
     border-collapse: collapse;
-    font-family: verdana, arial, sans-serif;
-    
+    font-family: verdana, arial, sans-serif;    
 }
 
 tr{

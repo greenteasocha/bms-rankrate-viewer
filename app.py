@@ -2,7 +2,7 @@ import json
 import os
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, request, redirect
 from scripts.tableGenerator import generator
 from scripts.makeUserTable import getPlayerPercentage
 app = Flask(__name__)
@@ -18,6 +18,11 @@ def hello_world():
 
     # return generator(data, LR2ID) 
     
+@app.route('/user')
+def redirect_by_ID():
+    LR2ID = request.args.get("LR2ID", "")
+    return show_table(LR2ID)
+
 @app.route('/user/<int:LR2ID>')
 def show_table(LR2ID):
     # すでに集計したファイルがあればキャッシュとして使う
