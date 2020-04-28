@@ -11,15 +11,31 @@ html = '''
 </head>
 <body>
     <header>
-        <div class=title/logo> BMS Rank Ratio(Beta)</div>
+        <div class=title/logo> BMS Rank-Rate Viewer(Beta)</div>
     </header>
     <div class="middle">
         <div class="playerInfo">
-        <p class="LR2ID">
-            LR2ID: {{ LR2ID }}
-        </p>
+            <p class="LR2ID">
+                LR2ID: {{ LR2ID }} <br>
+            </p>
+            <p class="playerName">
+                Player: {{ playerName }}
+            </p>
+            <table class="divisionTable" align="center">
+                <tr class="header"><td>-1%</td><td>-3%</td><td>-5%</td><td>-10%</td><td>-30%</td><td>-50%</td><td>-70%</td><td>-100%</td></tr>
+                <tr class="value">
+                    <td class="fail">{{ rank_division[0] }}</td>
+                    <td class="easy">{{ rank_division[1] }}</td>
+                    <td class="normal">{{ rank_division[2] }}</td>
+                    <td class="hard">{{ rank_division[3] }}</td>
+                    <td class="fc">{{ rank_division[4] }}</td>
+                    <td class="pa">{{ rank_division[5] }}</td>
+                    <td class="pa">{{ rank_division[6] }}</td>
+                    <td class="pa">{{ rank_division[7] }}</td>
+                </tr>
+            </table> 
         </div>
-        <table class="scoretable" id="sorter" width="80%" align="center">
+        <table class="scoreTable" id="sorter" width="80%" align="center">
         <tr class="playerheader">
             <td>
             ID
@@ -71,7 +87,7 @@ html = '''
 def generator(data, LR2ID):
     template = Template(html)
     tableContents = []
-    for content in data[str(LR2ID)]:
+    for content in data["contents"]:
         tableContents.append(
             {"ID": content["ID"],
             "Lv": content["Lv"],
@@ -83,6 +99,8 @@ def generator(data, LR2ID):
 
     html_data = {
         "LR2ID": LR2ID, 
+        "playerName": data["playerName"],
+        "rank_division": data["rank_division"],
         "tableContents": tableContents}
     return template.render(html_data)
         

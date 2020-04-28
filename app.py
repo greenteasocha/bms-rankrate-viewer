@@ -42,8 +42,14 @@ def show_table(LR2ID):
         return render_template('notfound.html', LR2ID=LR2ID)
 
     else:
+        # staiwwayの書式に合わせてplayernameを取得(とても読みづらくて申し訳ない)
+        playerName = soup.find_all('span', class_='player')[0].get_text().split("\n")[0].replace("(mypage)", "")
+        # これはスコアテーブル
         table = soup.find_all("table", {"class": "playerlist"})[0]
-        getPlayerPercentage(table, LR2ID)
+        # 一度集計結果を出力してから
+        getPlayerPercentage(table, LR2ID, playerName)
+
+        # テーブルを再作成し表示する
         with open("./data/users/userData_{}.json".format(LR2ID), "r", encoding="utf-8") as fr:
             data = json.load(fr)
 

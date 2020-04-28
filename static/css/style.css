@@ -31,6 +31,12 @@ footer{
 
 .LR2ID{
     background-color: #FFFFFF;
+    padding-bottom: 0px;
+}
+
+.playerName{
+    background-color: #FFFFFF;
+    padding-top: 0px;
 }
 
 .playerInfo{
@@ -44,8 +50,10 @@ footer{
     font-size: 30px;
     padding: 15px 
 }
-.scoretable{
-    background-color: #FFFFFF;
+.playerInfo p{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
 .middle{
@@ -70,7 +78,7 @@ footer{
     font-size: 20px;
 }
 
-.infoText{
+.curvedEnclosure{
     width: 60%;
     margin-left: auto;
     margin-right: auto; 
@@ -83,9 +91,26 @@ footer{
     margin-bottom: 50px;
 }
 
-table{
+.divisionTable{
+    font-size: 20px;
+    padding: 5px;
     border-collapse: collapse;
-    font-family: verdana, arial, sans-serif;    
+    background-color: #FFFFFF;
+    font-family: 'Century Gothic'
+}
+
+.divisionTable td {
+    padding: 5px;
+    background-color: #FFFFFF;
+}
+
+.scoreTable{
+    margin-left: auto;
+    margin-right: auto; 
+    border-collapse: collapse;
+    font-family: verdana, arial, sans-serif;   
+    margin-top: 30px; 
+    margin-bottom: 30px;
 }
 
 tr{
@@ -93,7 +118,7 @@ tr{
     
 }
 
-td {
+.scoreTable td {
     padding: 5px;
     background-color: #DDD;
 }
