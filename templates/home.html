@@ -1,0 +1,33 @@
+<!DOCTYPE html> 
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>BMS</title>
+</head>
+<body>
+    <header>
+        <div class=title/logo> BMS Rank-Rate Viewer(Beta)</div>
+    </header>
+
+    <div class="middle">
+        <form action="/user" type="get" align="center" class="pageJump">
+            <input typ="text" name="LR2ID" class="ID_form"> <button type="submit" class="ID_form">GO</button>
+        </form>
+        <!-- <div class="covered" width="60%"> -->
+            <div class="curvedEnclosure" align="center">
+                <h2>使い方</h2>
+                <p>・上記フォームへLR2IDを入力</p>
+                <p>・https://bms-rankrate-viewer.herokuapp.com/user/<自分のLR2ID></p>
+            
+                のどちらかでアクセスしてください。
+                <h2>注意点</h2>
+                <p>初回アクセス時は表示に10秒ほどかかります</p>
+                <p>stairwayにて集計されたデータを用いるため、stairwayに登録されているプレイヤーのみが対象となります</p>
+                <p>使用しているデータは最新ではなく、2020/4/26時点の物です。</p>
+                <h2></h2>
+                バグや要望がありましたら<a href="https://twitter.com/sentya7">sentya7</a>までお知らせください。<br>
+            </div>
+        <!-- </div> -->
+    </div>
+    <footer></footer>
+</body> 
