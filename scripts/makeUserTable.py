@@ -3,13 +3,17 @@ import json
 import csv
 import sys
 from bs4 import BeautifulSoup
+from bisect import bisect_left
 
-def getPlayerPercentage(table, LR2ID):
+def getPlayerPercentage(table, LR2ID, playerName):
     with open("./data/URLLinks.json", "r", encoding='utf-8') as fr:
         musicdata = json.load(fr)
 
     rows = table.findAll('tr')
     contents_out = []
+
+    rank_division = [0, 0, 0, 0, 0, 0, 0, 0] # ~1%, ~3%, ~5%, ~10%, ~30%, ~50%, ~70% ~ 100%
+    rank_divisor = [1, 3, 5, 10, 30, 50, 70]
 
     for row in rows:
         # len(row_contents) = 12
@@ -29,6 +33,8 @@ def getPlayerPercentage(table, LR2ID):
         else: # プレイデータなし
             rank = 99999
             rank_rate = 100
+        
+        rank_division[bisect_left(rank_divisor, rank_rate)] += 1
 
         contents_each = {
             "ID": ID, 
@@ -43,11 +49,17 @@ def getPlayerPercentage(table, LR2ID):
 
     contents_out.sort(key=lambda x: x["ランキング位置(%)"])
     
+    data_out = {
+        "contents": contents_out,
+        "rank_division": rank_division,
+        "playerName": playerName}
+
     with open("./data/users/userData_{}.json".format(LR2ID), "w", encoding='utf-8') as fw:
-        json.dump({LR2ID: contents_out}, fw, ensure_ascii=False, indent=4, sort_keys=True, separators=(',', ': '))
+        json.dump(data_out, fw, ensure_ascii=False, indent=4, sort_keys=True, separators=(',', ': '))
 
 def main():
-    LR2ID = input("LR2ID? : ")
+    # LR2ID = input("LR2ID? : ")
+    LR2ID = 41955
     get_url_info = requests.get('https://stairway.sakura.ne.jp/bms/LunaticRave2/?contents=player&page={}'.format(LR2ID))
     res = get_url_info.content
     soup = BeautifulSoup(res, 'html.parser')
@@ -56,9 +68,13 @@ def main():
         print("無効なLR2IDです。")
         sys.exit()
 
+    # staiwwayの書式に合わせてplayernameを取得(とても読みづらくて申し訳ない)
+    playerName = soup.find_all('span', class_='player')[0].get_text().split("\n")[0].replace("(mypage)", "")
+    
+    # また、スコア一覧に相当するテーブルを抽出
     table = soup.find_all("table", {"class": "playerlist"})[0]
 
-    getPlayerPercentage(table, LR2ID)
+    getPlayerPercentage(table, LR2ID, playerName)
 
 if __name__ == "__main__":
     main()  

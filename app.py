@@ -2,33 +2,27 @@ import json
 import os
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, url_for, render_template
+from flask import Flask, url_for, render_template, request, redirect
 from scripts.tableGenerator import generator
 from scripts.makeUserTable import getPlayerPercentage
 app = Flask(__name__)
 
-# @app.context_processor
-# def override_url_for():
-#     return dict(url_for=dated_url_for)
-
-# def dated_url_for(endpoint, **values):
-#     if endpoint == 'static':
-#         filename = values.get('filename', None)
-#         if filename:
-#             file_path = os.path.join(app.root_path,
-#                                  endpoint, filename)
-#             values['q'] = int(os.stat(file_path).st_mtime)
-#     return url_for(endpoint, **values)
 
 @app.route('/')
 def hello_world():
-    return "つかい方... https://bms-rankrate-viewer.herokuapp.com/user/<自分のLR2ID>  にアクセス。 ほんまに適当でごめん"
+    return render_template('home.html')
+    # return "つかい方... https://bms-rankrate-viewer.herokuapp.com/user/<自分のLR2ID>  にアクセス。 ほんまに適当でごめん"
     # LR2ID = 41955
     # with open("./data/users/userData_41955.json", "r", encoding="utf-8") as fr:
     #     data = json.load(fr)
 
     # return generator(data, LR2ID) 
     
+@app.route('/user')
+def redirect_by_ID():
+    LR2ID = request.args.get("LR2ID", "")
+    return show_table(LR2ID)
+
 @app.route('/user/<int:LR2ID>')
 def show_table(LR2ID):
     # すでに集計したファイルがあればキャッシュとして使う
@@ -48,8 +42,14 @@ def show_table(LR2ID):
         return render_template('notfound.html', LR2ID=LR2ID)
 
     else:
+        # staiwwayの書式に合わせてplayernameを取得(とても読みづらくて申し訳ない)
+        playerName = soup.find_all('span', class_='player')[0].get_text().split("\n")[0].replace("(mypage)", "")
+        # これはスコアテーブル
         table = soup.find_all("table", {"class": "playerlist"})[0]
-        getPlayerPercentage(table, LR2ID)
+        # 一度集計結果を出力してから
+        getPlayerPercentage(table, LR2ID, playerName)
+
+        # テーブルを再作成し表示する
         with open("./data/users/userData_{}.json".format(LR2ID), "r", encoding="utf-8") as fr:
             data = json.load(fr)
 
