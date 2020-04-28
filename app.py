@@ -25,6 +25,8 @@ def redirect_by_ID():
 
 @app.route('/user/<int:LR2ID>')
 def show_table(LR2ID):
+    if LR2ID == "":
+        LR2ID = 41955
     # すでに集計したファイルがあればキャッシュとして使う
     # TODO: 更新日時を調べる
     if os.path.exists("./data/users/userData_{}.json".format(LR2ID)):
@@ -37,8 +39,9 @@ def show_table(LR2ID):
     get_url_info = requests.get('https://stairway.sakura.ne.jp/bms/LunaticRave2/?contents=player&page={}'.format(LR2ID))
     res = get_url_info.content
     soup = BeautifulSoup(res, 'html.parser')
-    
-    if "指定した Player が存在しません．" in soup.get_text():
+    print(soup)
+
+    if "指定した Player が存在しません．" in soup.get_text() or "Player を選択してください．" in soup.get_text():
         return render_template('notfound.html', LR2ID=LR2ID)
 
     else:
